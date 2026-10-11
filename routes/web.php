@@ -21,14 +21,14 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->route('user.dashboard');
     })->name('dashboard');
 
-    // User (Senior Citizen) area
+    // user section
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
         Route::get('/profile/edit', [UserDashboardController::class, 'editProfile'])->name('profile.edit');
         Route::put('/profile', [UserDashboardController::class, 'updateProfile'])->name('profile.update');
     });
 
-    // Admin area
+    // admin area
     Route::prefix('admin')
         ->name('admin.')
         ->middleware('admin')

@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{-- ═══════════════ WEATHER CARD + SEARCH ═══════════════ --}}
+{{-- ═══════════════ weather card w/ search ═══════════════ --}}
 <div class="mb-6">
 
     {{-- Search Bar --}}
@@ -23,7 +23,7 @@
         </div>
     </form>
 
-    {{-- Weather Result --}}
+    {{-- weather result --}}
     @if($weather['success'])
         <div class="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl shadow-lg p-6 text-white">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -66,7 +66,7 @@
             </div>
         </div>
     @else
-        {{-- Fallback when API fails or city not found --}}
+        {{-- fallback when api fails/city not found --}}
         <div class="bg-gray-100 border border-gray-300 rounded-xl p-5 text-gray-600">
             <div class="flex items-center gap-3">
                 <svg class="w-6 h-6 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@
     @endif
 </div>
 
-
+{{-- ═══════════════ membership stats ═══════════════ --}}
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
     <div class="bg-white rounded-lg shadow p-5">
         <p class="text-sm text-gray-500">Total Members</p>
@@ -102,7 +102,7 @@
     </div>
 </div>
 
-
+{{-- ═══════════════ recent members ═══════════════ --}}
 <div class="bg-white rounded-lg shadow">
     <div class="px-5 py-4 border-b">
         <h2 class="text-lg font-semibold">Recent Members</h2>
