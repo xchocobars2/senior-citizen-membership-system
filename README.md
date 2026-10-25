@@ -32,7 +32,6 @@ A web-based membership management system built with **Laravel** and **Breeze (Bl
 - **Security**
   - Role-based middleware protection
   - Secure password hashing
-  - API key stored in `.env`
 
 ## Tech Stack
 
@@ -47,8 +46,8 @@ A web-based membership management system built with **Laravel** and **Breeze (Bl
 
 | Role  | Email               | Password  |
 |-------|---------------------|-----------|
-| Admin | admin@example.com   | password  |
-| User  | senior@example.com  | password  |
+| Admin | admin@example.com   | ********* |
+| User  | senior@example.com  | ********* |
 
 ## Installation
 
