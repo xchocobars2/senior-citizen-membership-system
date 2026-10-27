@@ -6,11 +6,17 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GoogleAuthController;   // ← ADD THIS
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+// ── Google OAuth (public – no auth required) ─────────────────
+Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
+// ─────────────────────────────────────────────────────────────
 
 Route::middleware(['auth'])->group(function () {
 

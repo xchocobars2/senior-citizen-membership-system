@@ -15,6 +15,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'google_id',
         'membership_id',
         'date_of_birth',
         'contact_number',
