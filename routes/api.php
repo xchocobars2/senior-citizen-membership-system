@@ -1,25 +1,30 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MembershipController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes - Senior Citizen Memberships CRUD
+| API Routes - Sanctum Auth + Protected Memberships
 |--------------------------------------------------------------------------
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Public auth routes
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
-// Public read endpoints (optional – you can protect them later)
-Route::get('/memberships', [MembershipController::class, 'index']);
-Route::get('/memberships/{id}', [MembershipController::class, 'show']);
+// Protected routes (require Bearer token)
+Route::middleware('auth:sanctum')->group(function () {
 
-// Write operations (Create, Update, Delete)
-Route::post('/memberships', [MembershipController::class, 'store']);
-Route::put('/memberships/{id}', [MembershipController::class, 'update']);
-Route::patch('/memberships/{id}', [MembershipController::class, 'update']);
-Route::delete('/memberships/{id}', [MembershipController::class, 'destroy']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
+
+    // Existing Memberships CRUD – now protected
+    Route::get('/memberships', [MembershipController::class, 'index']);
+    Route::get('/memberships/{id}', [MembershipController::class, 'show']);
+    Route::post('/memberships', [MembershipController::class, 'store']);
+    Route::put('/memberships/{id}', [MembershipController::class, 'update']);
+    Route::patch('/memberships/{id}', [MembershipController::class, 'update']);
+    Route::delete('/memberships/{id}', [MembershipController::class, 'destroy']);
+});

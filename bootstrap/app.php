@@ -13,11 +13,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        
+
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'user.exists' => \App\Http\Middleware\EnsureUserExists::class,
         ]);
-        
+
+        // Force logout if user was deleted but session still exists
+        $middleware->web(append: [
+            \App\Http\Middleware\EnsureUserExists::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

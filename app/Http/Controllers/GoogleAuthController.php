@@ -16,7 +16,16 @@ class GoogleAuthController extends Controller
      */
     public function redirect(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')
+            ->scopes(['openid', 'profile', 'email'])
+            ->with([
+                'prompt' => 'consent login select_account',
+
+                'access_type'=> 'offline',
+                'max_age' => 0,
+            ])
+            ->redirect();
+
     }
 
     /**
