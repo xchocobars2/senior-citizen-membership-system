@@ -21,6 +21,10 @@
        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
         + Add Member
     </a>
+    <a href="{{ route('admin.memberships.export') }}"
+        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+            Export to Excel
+    </a>
 </div>
 
 <div class="bg-white rounded-lg shadow overflow-hidden">

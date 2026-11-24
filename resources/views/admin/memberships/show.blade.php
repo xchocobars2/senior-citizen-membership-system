@@ -58,6 +58,10 @@
             <p class="text-gray-500">Notes</p>
             <p class="font-medium">{{ $membership->notes ?? '—' }}</p>
         </div>
+        <a href="{{ route('admin.memberships.id-card', $membership) }}"
+            class="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700">
+                Download ID Card
+        </a>
     </div>
 </div>
 @endsection

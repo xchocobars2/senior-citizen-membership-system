@@ -25,6 +25,8 @@ class User extends Authenticatable
         'membership_date',
         'expiry_date',
         'notes',
+        'profile_photo',
+        'last_login_at',
     ];
 
     protected $hidden = [

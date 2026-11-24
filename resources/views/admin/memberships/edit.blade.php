@@ -4,9 +4,38 @@
 
 @section('content')
 <div class="max-w-2xl bg-white rounded-lg shadow p-6">
-    <form method="POST" action="{{ route('admin.memberships.update', $membership) }}">
+
+    {{-- Important: enctype is required for file upload --}}
+    <form method="POST" action="{{ route('admin.memberships.update', $membership) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
+        {{-- ==================== PROFILE PHOTO ==================== --}}
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Profile Photo</label>
+
+            @if($membership->profile_photo)
+                <div class="mb-3">
+                    <img src="{{ asset('storage/' . $membership->profile_photo) }}"
+                         alt="Current Photo"
+                         class="w-24 h-24 rounded-full object-cover border border-gray-300">
+                </div>
+            @endif
+
+            <input type="file"
+                   name="profile_photo"
+                   accept="image/*"
+                   class="block w-full text-sm text-gray-500
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-md file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-indigo-50 file:text-indigo-700
+                          hover:file:bg-indigo-100">
+            <p class="text-xs text-gray-500 mt-1">Accepted formats: JPG, PNG. Max size: 2MB</p>
+            @error('profile_photo')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
