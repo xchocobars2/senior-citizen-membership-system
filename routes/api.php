@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
 
-    // Existing Memberships CRUD – now protected
+    
     Route::get('/memberships', [MembershipController::class, 'index']);
     Route::get('/memberships/{id}', [MembershipController::class, 'show']);
     Route::post('/memberships', [MembershipController::class, 'store']);
